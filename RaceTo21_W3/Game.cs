@@ -70,10 +70,10 @@ namespace RaceTo21
                     }
                     else if (cardTable.OfferACard(player))
                     {
-                        Console.WriteLine("How many cards you want to draw 1,2,3");//hz
-                        int answer = Convert.ToInt32( Console.ReadLine());//hz
+                        Console.WriteLine("How many cards you want to draw 1,2,3");//hz Ask user how many cards that they want
+                        int answer = Convert.ToInt32( Console.ReadLine());//hz Read the input
 
-                        for (int i = 0; i < answer; i++)//hz
+                        for (int i = 0; i < answer; i++)//hz Add cards to player by using for loop
                         {
                             Card card = deck.DealTopCard();
                             player.cards.Add(card);
