@@ -13,7 +13,7 @@ namespace RaceTo21
         public Task nextTask; // keeps track of game state
         private bool cheating = false; // lets you cheat for testing purposes if true
 
-        int numberOfStay = 0;//hz
+        int numberOfStay = 0;//hz the total number of players that not going to draw cards
 
         public Game(CardTable c)
         {
@@ -85,7 +85,7 @@ namespace RaceTo21
                         if (player.score > 21)
                         {
                             player.status = PlayerStatus.bust;
-                            numberOfPlayers--;
+                            numberOfPlayers--;// hz decrease the total number of current players
                         }
                         else if (player.score == 21)
                         {
@@ -95,8 +95,10 @@ namespace RaceTo21
                     else
                     {
                         player.status = PlayerStatus.stay;
-                        numberOfStay++; //HZ
-                        if(numberOfStay == numberOfPlayers)//HZ
+
+                        numberOfStay++; //HZ the total number of players who is stay increas 
+
+                        if(numberOfStay == numberOfPlayers)//HZ if total number of stay players equal total number of players, then change the playerStatus to bust
                         {
                             for(int i =0; i < players.Count; i++)
                             {
@@ -115,7 +117,7 @@ namespace RaceTo21
                     Player winner = DoFinalScoring();
                     cardTable.AnnounceWinner(winner);
 
-                    for(int i=0; i < players.Count; i++)
+                    for(int i=0; i < players.Count; i++) //hz set the winner to the last slot in next round
                     {
                         if(players[i] == winner)
                         {
@@ -124,11 +126,11 @@ namespace RaceTo21
                             players[i] = tmp;
                         }
                     }
-                    Random rng = new Random();//HZ
+                    Random rng = new Random();//HZ declear random
 
-                    players = remainCheck(players);//HZ
+                    players = remainCheck(players);//HZ 
 
-                    for (int i = 0; i < players.Count - 1; i++)//HZ
+                    for (int i = 0; i < players.Count - 1; i++)//HZ random the rest of players' slots
                     {
                         Player tmp = players[i];
                         int swapindex = rng.Next(players.Count);
