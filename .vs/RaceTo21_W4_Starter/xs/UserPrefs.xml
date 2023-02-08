@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.RaceTo21 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="RaceTo21_W3/Game.cs">
     <Files>
-      <File FileName="RaceTo21_W3/Game.cs" Line="99" Column="64" />
+      <File FileName="RaceTo21_W3/Game.cs" Line="133" Column="102" />
       <File FileName="RaceTo21_W3/CardTable.cs" />
       <File FileName="RaceTo21_W3/Player.cs" />
       <File FileName="RaceTo21_W3/PlayerStatus.cs" />
