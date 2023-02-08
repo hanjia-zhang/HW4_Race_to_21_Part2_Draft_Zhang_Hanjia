@@ -1,15 +1,15 @@
 ﻿<Properties StartupConfiguration="{332467CF-8722-442C-862A-560A544AB615}|Default">
   <MonoDevelop.Ide.ItemProperties.RaceTo21 PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="RaceTo21_W3/Game.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RaceTo21_W3/Player.cs">
     <Files>
-      <File FileName="RaceTo21_W3/Game.cs" Line="125" Column="16" />
-      <File FileName="RaceTo21_W3/CardTable.cs" />
-      <File FileName="RaceTo21_W3/Player.cs" />
-      <File FileName="RaceTo21_W3/PlayerStatus.cs" />
-      <File FileName="RaceTo21_W3/Program.cs" />
-      <File FileName="RaceTo21_W3/Card.cs" />
-      <File FileName="RaceTo21_W3/Task.cs" />
-      <File FileName="RaceTo21_W3/Deck.cs" />
+      <File FileName="RaceTo21_W3/Game.cs" Line="127" Column="51" />
+      <File FileName="RaceTo21_W3/CardTable.cs" Line="143" Column="63" />
+      <File FileName="RaceTo21_W3/Player.cs" Line="9" Column="69" />
+      <File FileName="RaceTo21_W3/PlayerStatus.cs" Line="1" Column="1" />
+      <File FileName="RaceTo21_W3/Program.cs" Line="1" Column="1" />
+      <File FileName="RaceTo21_W3/Card.cs" Line="1" Column="1" />
+      <File FileName="RaceTo21_W3/Task.cs" Line="1" Column="1" />
+      <File FileName="RaceTo21_W3/Deck.cs" Line="20" Column="51" />
       <File FileName="RaceTo21_W3/card_assets/_cards.csv" />
     </Files>
     <Pads>
@@ -17,7 +17,7 @@
         <State name="__root__">
           <Node name="RaceTo21_W4_Starter" expanded="True">
             <Node name="RaceTo21" expanded="True">
-              <Node name="Game.cs" selected="True" />
+              <Node name="Player.cs" selected="True" />
             </Node>
           </Node>
         </State>

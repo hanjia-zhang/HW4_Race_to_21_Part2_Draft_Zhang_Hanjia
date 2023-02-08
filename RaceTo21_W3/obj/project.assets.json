@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/zhanghanjia/Desktop/C# /Week4/HW4_Zhang_Hanjia/RaceTo21_W3/RaceTo21.csproj",
+      "projectUniqueName": "/Users/zhanghanjia/Desktop/C# /Week4/HW4_Race_to_21_Part2_Draft_Zhang_Hanjia/RaceTo21_W3/RaceTo21.csproj",
       "projectName": "RaceTo21_W3",
-      "projectPath": "/Users/zhanghanjia/Desktop/C# /Week4/HW4_Zhang_Hanjia/RaceTo21_W3/RaceTo21.csproj",
+      "projectPath": "/Users/zhanghanjia/Desktop/C# /Week4/HW4_Race_to_21_Part2_Draft_Zhang_Hanjia/RaceTo21_W3/RaceTo21.csproj",
       "packagesPath": "/Users/zhanghanjia/.nuget/packages/",
-      "outputPath": "/Users/zhanghanjia/Desktop/C# /Week4/HW4_Zhang_Hanjia/RaceTo21_W3/obj/",
+      "outputPath": "/Users/zhanghanjia/Desktop/C# /Week4/HW4_Race_to_21_Part2_Draft_Zhang_Hanjia/RaceTo21_W3/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/zhanghanjia/.config/NuGet/NuGet.Config"

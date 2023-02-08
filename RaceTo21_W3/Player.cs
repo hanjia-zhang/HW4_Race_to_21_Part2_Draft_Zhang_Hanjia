@@ -6,7 +6,7 @@ namespace RaceTo21
 	public class Player
 	{
 		public string name;
-		public List<Card> cards = new List<Card>();
+		public List<Card> cards = new List<Card>();//new list for player "hands"
 		public PlayerStatus status = PlayerStatus.active;
 		public int score;
 

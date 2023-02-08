@@ -87,7 +87,7 @@ namespace RaceTo21
             {
                 string output = player.name + " has: ";
              
-                foreach (Card card in player.cards)//hz
+                foreach (Card card in player.cards)//hz Enable the " number of cards types"
                 {
                     string[] divid = card.displayName.Split(" ");//Using Split cut the put into pieces
                     Console.WriteLine(divid[0]);
@@ -96,12 +96,12 @@ namespace RaceTo21
                     string cardLongName = divid[0];
                     switch(cardName)
                     {
-                        case "2":                          
+                        case "2":                       //when the case is 2 out put "Two" instead   
                             cardLongName = "Two";
                             break;
 
                         case "3":
-                            cardLongName = "Three";
+                            cardLongName = "Three";    //when the case is 3 out put "Three" instead 
                             break;
 
                         case "4":
@@ -137,7 +137,7 @@ namespace RaceTo21
                             break;
                     }
                     
-                    output += cardLongName + " " + divid[1] + " " + divid[2] + ", ";
+                    output += cardLongName + " " + divid[1] + " " + divid[2] + ", ";// edit output
                 }
                 
                 output = output.Remove(output.Length - 2);//hz

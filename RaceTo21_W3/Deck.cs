@@ -13,7 +13,7 @@ namespace RaceTo21
         public Deck()
         {
             Console.WriteLine("*********** Building deck...");
-            List <string> suits = new List<string>{ "Spades", "Hearts", "Clubs", "Diamonds" };
+            List <string> suits = new List<string>{ "Spades", "Hearts", "Clubs", "Diamonds" };//HZ put them into list
 
             for (int cardVal = 1; cardVal <= 13; cardVal++)
             {
