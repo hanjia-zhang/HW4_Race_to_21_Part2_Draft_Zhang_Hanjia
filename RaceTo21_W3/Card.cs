@@ -3,9 +3,10 @@ namespace RaceTo21
 {
     public class Card
     {
-        public string id;
-        public string displayName;
-        
+        public string id { get; private set; }//hz
+        public string displayName { get; private set; }//hz
+
+
 
         public Card(string shortCardName, string longCardName)
         {

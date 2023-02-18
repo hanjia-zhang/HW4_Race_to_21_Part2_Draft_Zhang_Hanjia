@@ -90,7 +90,7 @@ namespace RaceTo21
                 foreach (Card card in player.cards)//hz Enable the " number of cards types"
                 {
                     string[] divid = card.displayName.Split(" ");//Using Split cut the put into pieces
-                    Console.WriteLine(divid[0]);
+                    
 
                     string cardName = divid[0];
                     string cardLongName = divid[0];
@@ -172,8 +172,7 @@ namespace RaceTo21
             {
                 Console.WriteLine("Everyone busted!");
             }
-            Console.Write("Press <Enter> to exit... ");
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            
         }
     }
 }

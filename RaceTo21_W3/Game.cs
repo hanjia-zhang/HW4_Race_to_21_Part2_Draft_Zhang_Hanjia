@@ -11,15 +11,14 @@ namespace RaceTo21
         Deck deck = new Deck(); // deck of cards
         int currentPlayer = 0; // current player on list
         public Task nextTask; // keeps track of game state
-        private bool cheating = false; // lets you cheat for testing purposes if true
+        private bool cheating = true; // lets you cheat for testing purposes if true
 
-        int numberOfStay = 0;//hz the total number of players that not going to draw cards
 
         public Game(CardTable c)
         {
             cardTable = c;
             deck.Shuffle();
-            deck.ShowAllCards();
+            //deck.ShowAllCards();
             nextTask = Task.GetNumberOfPlayers;
         }
 
@@ -66,44 +65,68 @@ namespace RaceTo21
                 {
                     if (numberOfPlayers == 1)
                     {
-                        player.status = PlayerStatus.win;
+                        player.setStatus(PlayerStatus.win);//hz call the function from the Player class
                     }
-                    else if (cardTable.OfferACard(player))
+                    else 
                     {
-                        Console.WriteLine("How many cards you want to draw 1,2,3");//hz Ask user how many cards that they want
-                        int answer = Convert.ToInt32( Console.ReadLine());//hz Read the input
+                        int answer = 0;
 
-                        for (int i = 0; i < answer; i++)//hz Add cards to player by using for loop
+                        bool checkinput = true;//hz Check the input valid or not
+                        while(checkinput)//hz Using while loop to check user input, if input is not num keep asking until get valid input
                         {
-                            Card card = deck.DealTopCard();
-                            player.cards.Add(card);
+                            Console.WriteLine("How many cards you want to draw 0 - 3, " + player.name);//hz Ask user how many cards that they want
                             
-                        }
-
-                       player.score = ScoreHand(player);
-
-                        if (player.score > 21)
-                        {
-                            player.status = PlayerStatus.bust;
-                            numberOfPlayers--;// hz decrease the total number of current players
-                        }
-                        else if (player.score == 21)
-                        {
-                            player.status = PlayerStatus.win;
-                        }
-                    }
-                    else
-                    {
-                        player.status = PlayerStatus.stay;
-
-                        numberOfStay++; //HZ the total number of players who is stay increas 
-
-                        if(numberOfStay == numberOfPlayers)//HZ if total number of stay players equal total number of players, then change the playerStatus to bust
-                        {
-                            for(int i =0; i < players.Count; i++)
+                            try//hz Using "try" to check if the input can be transfer to number or not
                             {
-                                players[i].status = PlayerStatus.bust;
+                                
+                                answer = Convert.ToInt32(Console.ReadLine());//hz Read the input
+
+                                if(answer >=0 && answer <4)//hz if input is in the range, take the input
+                                {
+                                    checkinput = false;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Out of range!"); //hz if input is out of range, keep asking
+                                }
                             }
+                            catch (Exception ex)//hz using catch to detect the error when user get invalid input and remind user get correct input
+                            {
+                                Console.WriteLine(player.name + " please input number");
+                            }
+                        };
+                        
+
+
+                            
+                        if (answer != 0)
+                        {
+                        
+                            for (int i = 0; i < answer; i++)//hz Add cards to player by using for loop
+                            {
+                                Card card = deck.DealTopCard();
+                                player.cards.Add(card);
+                            
+                            }
+
+                           player.setScore(ScoreHand(player));//hz call the function from the Player class
+
+                            if (player.score > 21)
+                            {
+                                player.setStatus(PlayerStatus.bust);//hz
+                                numberOfPlayers--;// hz decrease the total number of current players
+                            }
+                            else if (player.score == 21)
+                            {
+                                player.setStatus(PlayerStatus.win);//hz call the function from the Player class
+                            }
+                        }
+                    
+                        else
+                        {
+                            Console.WriteLine(player.name + " Stay.");//Show the player stay
+
+                            player.setStatus(PlayerStatus.stay); //hz call the function from the Player class                           
                         }
                     }
                 }
@@ -128,7 +151,9 @@ namespace RaceTo21
                     }
                     Random rng = new Random();//HZ declear random
 
-                    players = remainCheck(players);//HZ 
+                    players = remainCheck(players);//HZ check the number of remain player
+                    currentPlayer = 0; //HZ reset the currentPlayer, keep the current players inside of the number of players range
+                    numberOfPlayers = players.Count;// HZ set number of players equal current player list
 
                     for (int i = 0; i < players.Count - 1; i++)//HZ random the rest of players' slots
                     {
@@ -140,15 +165,17 @@ namespace RaceTo21
 
                     
 
-                    if(players.Count > 0)//HZ
+                    if(players.Count > 0)//HZ if number of players greater than 0, start new round
                     {
-                        deck = new Deck();//HZ
+                        deck = new Deck();//HZ 
                         deck.Shuffle();//HZ
                         nextTask = Task.PlayerTurn;//HZ
-                    }
+                    }   
                     else
                     {
                         nextTask = Task.GameOver;//HZ
+                        Console.Write("Press <Enter> to exit... ");
+                        while (Console.ReadKey().Key != ConsoleKey.Enter) { }
                     }
                     
                 }
@@ -169,7 +196,7 @@ namespace RaceTo21
             }
         }
 
-        private List<Player> remainCheck(List<Player> players)//HZ
+        private List<Player> remainCheck(List<Player> players)//HZ Using for loop to ask each single player wants to play one more round or not
         {
 
             List<Player> newPlayers = new List<Player>();
@@ -179,7 +206,7 @@ namespace RaceTo21
                 string response = Console.ReadLine().ToUpper().Trim();
                 if(response == "Y")
                 {
-                    players[i].status = PlayerStatus.active;
+                    players[i].setStatus(PlayerStatus.active);//hz call the function from the Player class
                     players[i].cards = new List<Card>();
                     
                     newPlayers.Add(players[i]);
