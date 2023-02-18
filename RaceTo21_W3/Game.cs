@@ -140,44 +140,74 @@ namespace RaceTo21
                     Player winner = DoFinalScoring();
                     cardTable.AnnounceWinner(winner);
 
-                    for(int i=0; i < players.Count; i++) //hz set the winner to the last slot in next round
+                    int count = 0; //hz
+                    int totalScore = 0;//hz 
+                    for(int i = 0; i < players.Count; i++)// hz count the total score of the total number of players'
                     {
-                        if(players[i] == winner)
+                        totalScore += players[i].score;
+                    }
+
+                    if(totalScore == 0) // if total score equal 0, ask player again
+                    {
+                        for (int i = 0; i < players.Count; i++)//hz ask one more time if everyone bust
                         {
-                            Player tmp = players[players.Count - 1];
-                            players[players.Count - 1] = players[i];
-                            players[i] = tmp;
+                            Console.WriteLine("Do you want to pick card last call Y/N " + players[i].name);
+                            string response = Console.ReadLine().ToUpper().Trim();
+                            if (response == "Y")
+                            {
+                                players[i].setStatus(PlayerStatus.active);//hz call the function from the Player class
+                                count++;
+                            }
                         }
                     }
-                    Random rng = new Random();//HZ declear random
-
-                    players = remainCheck(players);//HZ check the number of remain player
-                    currentPlayer = 0; //HZ reset the currentPlayer, keep the current players inside of the number of players range
-                    numberOfPlayers = players.Count;// HZ set number of players equal current player list
-
-                    for (int i = 0; i < players.Count - 1; i++)//HZ random the rest of players' slots
-                    {
-                        Player tmp = players[i];
-                        int swapindex = rng.Next(players.Count);
-                        players[i] = players[swapindex];
-                        players[swapindex] = tmp;  
-                    }
 
                     
 
-                    if(players.Count > 0)//HZ if number of players greater than 0, start new round
+                    if(count == 0)//hz
                     {
-                        deck = new Deck();//HZ 
-                        deck.Shuffle();//HZ
-                        nextTask = Task.PlayerTurn;//HZ
-                    }   
-                    else
-                    {
-                        nextTask = Task.GameOver;//HZ
-                        Console.Write("Press <Enter> to exit... ");
-                        while (Console.ReadKey().Key != ConsoleKey.Enter) { }
-                    }
+                        for (int i=0; i < players.Count; i++) //hz set the winner to the last slot in next round
+                        {
+                            if(players[i] == winner)
+                            {
+                                Player tmp = players[players.Count - 1];
+                                players[players.Count - 1] = players[i];
+                                players[i] = tmp;
+                            }
+                        }
+                        Random rng = new Random();//HZ declear random
+
+                        players = remainCheck(players);//HZ check the number of remain player
+                        currentPlayer = 0; //HZ reset the currentPlayer, keep the current players inside of the number of players range
+                        numberOfPlayers = players.Count;// HZ set number of players equal current player list
+
+                        for (int i = 0; i < players.Count - 1; i++)//HZ random the rest of players' slots
+                        {
+                            Player tmp = players[i];
+                            int swapindex = rng.Next(players.Count);
+                            players[i] = players[swapindex];
+                            players[swapindex] = tmp;  
+                        }
+
                     
+
+                        if(players.Count > 0)//HZ if number of players greater than 0, start new round
+                        {
+                            deck = new Deck();//HZ 
+                            deck.Shuffle();//HZ
+                            nextTask = Task.PlayerTurn;//HZ
+                        }   
+                        else
+                        {
+                            nextTask = Task.GameOver;//HZ
+                            Console.Write("Press <Enter> to exit... ");
+                            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+                        }
+                    }
+                    else//hz
+                    {
+                        currentPlayer = 0;
+                        nextTask = Task.PlayerTurn;
+                    }
                 }
                 else
                 {
